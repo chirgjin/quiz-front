@@ -16,12 +16,19 @@ class App extends Component {
 			status: obj
 		})
 	}
+	check(){
+		if(window.location.pathname === '/'){
+			window.location.href = '/login'
+		}
+	}
 	render() {
+			this.check();
 		return (
 			<BrowserRouter>
 				<div>
 					<Route path='/login' statusUpdate = {this.statusUpdate.bind(this)}  component={Login} baseUrl={this.state.base_domain} />
 					<Route path='/dashboard' component={Quiz} baseUrl={this.state.base_domain} />
+					<Route from="/" to="/login"/>
 				</div>
 			</BrowserRouter>
 		);
