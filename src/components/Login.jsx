@@ -90,7 +90,7 @@ class Login extends Component {
 				console.log(this.state.response.success)
 				if(this.state.response.success === 1){
 					console.log('comming')
-					window.location.href = 'http://localhost:3000/dashboard'
+					window.location.href = '/dashboard'
 				}
 		})
 		.catch(err => console.log(err));
