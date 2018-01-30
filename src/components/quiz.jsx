@@ -52,7 +52,18 @@ class Quiz extends Component {
 			ques_id: ques.id,
 			answer: option
 		}
+		let i = 0 , questions = this.state.questions;
 		ques.answer = option;
+
+		for( i = 0 ; i < questions.length;i++) {
+			let q = questions[i];
+			if(q.id === ques.id) {
+				q.answer = option;
+				questions[i] = q;
+			}
+		}
+
+		this.setState(questions);
 
 		fetch(base_url,{
 			method:'POST',
@@ -103,6 +114,7 @@ class Quiz extends Component {
 		let data = [];
 
 		this.state.questions.map( (question) => (
+
 			data.push({ques_id : question.id , answer : question.answer })
 		));
 		fetch(base_url,{
@@ -116,7 +128,7 @@ class Quiz extends Component {
 		.then(res => res.json())
 		.then(json => {
 			if(json.success){
-				this.logout();
+				//this.logout();
 			}
 			else
 				alert(json.message);
@@ -166,15 +178,15 @@ class Quiz extends Component {
 								{
 									this.state.questions.map((ques)=>{
 										return(
-											<div className="col-md-4 question-box" key={ques.id}>
+											<div className="col-md-12 question-box" key={ques.id}>
 												<div className="cards" >
 													<form>
 														
 														<strong className="letter-space">{ques.question}</strong><br/>
-															<div className="center_text" ><label><span><input type="radio" onChange={(e)=>this.radio_submit(ques,e,ques.options[0])} className='radio' name="optradio"/></span><span className="letter-space" >{ques.options[0]}</span></label>
-															<label><span><input type="radio" onChange={(e)=>this.radio_submit(ques,e,ques.options[1])} className='radio' name="optradio"/></span><span className="letter-space" >{ques.options[1]}</span></label></div>
-															<div className="center_text" ><label><span><input type="radio" onChange={(e)=>this.radio_submit(ques,e,ques.options[2])} className='radio' name="optradio"/></span><span className="letter-space" >{ques.options[2]}</span></label>
-															<label><span><input type="radio" onChange={(e)=>this.radio_submit(ques,e,ques.options[3])} className='radio' name="optradio"/></span><span className="letter-space" >{ques.options[3]}</span></label></div>											
+															<div className="center_text" ><label><span><input type="radio" onChange={(e)=>this.radio_submit(ques,e,1)} className='radio' name="optradio"/></span><span className="letter-space" >{ques.options[0]}</span></label>
+															<label><span><input type="radio" onChange={(e)=>this.radio_submit(ques,e,2)} className='radio' name="optradio"/></span><span className="letter-space" >{ques.options[1]}</span></label></div>
+															<div className="center_text" ><label><span><input type="radio" onChange={(e)=>this.radio_submit(ques,e,3)} className='radio' name="optradio"/></span><span className="letter-space" >{ques.options[2]}</span></label>
+															<label><span><input type="radio" onChange={(e)=>this.radio_submit(ques,e,4)} className='radio' name="optradio"/></span><span className="letter-space" >{ques.options[3]}</span></label></div>											
 														
 													</form>
 												</div>
@@ -184,6 +196,7 @@ class Quiz extends Component {
 								}
 								<div className='col-md-4 center_h'>
 									<button onClick={this.submitQues.bind(this)} className="Submit">SUBMIT ALL</button>
+									<br/>
 								</div>
 							</div>
 						</div>						
