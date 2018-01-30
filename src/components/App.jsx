@@ -28,7 +28,6 @@ class App extends Component {
 				<div>
 					<Route path='/login' statusUpdate = {this.statusUpdate.bind(this)}  component={Login} baseUrl={this.state.base_domain} />
 					<Route path='/dashboard' component={Quiz} baseUrl={this.state.base_domain} />
-					<Route from="/" to="/login"/>
 				</div>
 			</BrowserRouter>
 		);
