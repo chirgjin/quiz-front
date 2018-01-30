@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Login from './Login.jsx';
 import Quiz from './quiz.jsx';
+import Countdown from './Clock.jsx'
 import {  BrowserRouter, Route } from 'react-router-dom'
 
 class App extends Component {
@@ -29,6 +30,7 @@ class App extends Component {
 				<div>
 					<Route path='/login' statusUpdate = {this.statusUpdate.bind(this)} render = {(props) => ( <Login base_origin = {this.state.base_domain} />)} />
 					<Route path='/dashboard' render = {(props) => ( <Quiz base_origin = {this.state.base_domain} />)} />
+					<Route path='/countdown' render = {(props) => ( <Countdown base_origin = {this.state.base_domain} />)} />
 				</div>
 			</BrowserRouter>
 		);
