@@ -8,26 +8,27 @@ class App extends Component {
 		super(props);
 		this.state = {
 			status : null,
-			base_domain : `http://quizportal.cf/backend/`
+			base_domain : `https://quizportal.cf/backend/`
 		}
 	}
 	statusUpdate(obj){
 		this.setState({
 			status: obj
-		})
+		});
 	}
 	check(){
 		if(window.location.pathname === '/'){
 			window.location.href = '/login'
 		}
+		Login.baseURL = this.state.base_domain;
 	}
 	render() {
 			this.check();
 		return (
 			<BrowserRouter>
 				<div>
-					<Route path='/login' statusUpdate = {this.statusUpdate.bind(this)}  component={Login} baseUrl={this.state.base_domain} />
-					<Route path='/dashboard' component={Quiz} baseUrl={this.state.base_domain} />
+					<Route path='/login' statusUpdate = {this.statusUpdate.bind(this)} render = {(props) => ( <Login base_origin = {this.state.base_domain} />)} />
+					<Route path='/dashboard' render = {(props) => ( <Quiz base_origin = {this.state.base_domain} />)} />
 				</div>
 			</BrowserRouter>
 		);

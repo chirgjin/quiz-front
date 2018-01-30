@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import 'bootstrap/dist/css/bootstrap.css';
 import './../css/Login.css';
+import './../css/font-awesome.min.css';
 
 class Login extends Component {
 	constructor(props){
@@ -15,7 +16,9 @@ class Login extends Component {
 			hidden : 'hidden',
 			selectParticipationType : 'selectParticipationType',
 			inputType : '',
-			response : null
+			response : null,
+			currentStatusMessage : '',
+			currentStatus : 1,
 		}
 	}
 
@@ -55,13 +58,26 @@ class Login extends Component {
 			credential2:target.value
 		})
 	}
-	Submit(){
+	Submit(event){
+		this.preventDefault( event );
 		let data;
 		localStorage.setItem('credential1', this.state.credential1);
 		localStorage.setItem('credential2', this.state.credential2);
 		console.log('submit')
 		console.log(`credential1 = ${this.state.credential1}`);
 		console.log(`credential2 = ${this.state.credential2}`);
+
+		if( this.state.credential1.length < 1 || this.state.credential2.length < 1)
+			return 0;
+		
+		/*this.setState({
+			currentStatusMessage : "<i class='fa fa-spin fa-spinner' ></i> Loading."
+		});*/
+
+		this.setState({
+			currentStatus: 0
+		});
+
 		if(this.state.teamStatus === 'false'){
 			data = {
 				isTeam : this.state.teamStatus,
@@ -75,7 +91,7 @@ class Login extends Component {
 				teamCode : this.state.credential2
 			}
 		}
-		let base_url = 'http://quizportal.cf/backend/login.php';
+		let base_url = this.props.base_origin + 'login.php';
 		console.log(data.isTeam);
 		fetch(base_url, {
 			method: 'POST',
@@ -88,15 +104,36 @@ class Login extends Component {
 		}).then(res => res.json())
 		.then((json) => {
 			console.log(json);
-			this.setState({response:json});
+			//this.state.currentStatus = 1;
+			this.setState({
+				response:json,
+				currentStatus: 1
+			});
 				console.log(this.state.response.success)
 				localStorage.setItem('response', JSON.stringify(json));
 				if(this.state.response.success === 1){
-					console.log('comming')
-					window.location.href = 'http://localhost:3000/dashboard'
+					
+					this.setState({
+						currentStatusMessage : "Successfully logged in\nRedirecting.."
+					});
+					
+					window.location.href = '/dashboard';
+				}
+				else {
+				
+					this.setState({
+						currentStatusMessage : json.message
+					});
+		
 				}
 		})
-		.catch(err => console.log(err));
+		.catch(
+			err => this.setState({
+				response : null,
+				currentStatus : 1,
+				currentStatusMessage : "Error Connecting to server"
+			})
+		);
 	}
 	preventDefault(event) {
 		event.preventDefault();
@@ -117,11 +154,16 @@ class Login extends Component {
 				</div>
 				<div className = {this.state.hidden}>
 				<img className="logo-login" src={require('../img/quizapp.jpg')} alt=""/>
-					<form onSubmit={this.preventDefault.bind(this)} >
+					<form onSubmit={this.Submit.bind(this)} >
 						<div className="vertical-align">
+							{
+								(this.state.currentStatus === 0)
+								? <h3 align="center" ><i className='fa fa-spin fa-spinner' ></i> Loading..</h3>
+								: <h3 align="center" >{this.state.currentStatusMessage}</h3>
+							}
 							<input placeholder={this.state.particapationType1} value={this.state.credential1} onChange={this.handelCredential1Change.bind(this)} className='credential_1' required type={this.state.inputType}/>
 							<input placeholder={this.state.particapationType2} value={this.state.credential2} onChange={this.handelCredential2Change.bind(this)} className='credential_2' required type="text"/>
-							<button onClick= {this.Submit.bind(this)} className = 'submit_form'>Submit</button>
+							<button className = 'submit_form'>Submit</button>
 						</div>
 					</form>
 				</div>
