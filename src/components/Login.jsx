@@ -73,7 +73,7 @@ class Login extends Component {
 				teamCode : this.state.credential2
 			}
 		}
-		let base_url = 'http://quizportal.ml/backend/login.php';
+		let base_url = 'http://quizportal.cf/backend/login.php';
 		console.log(data.isTeam);
 		fetch(base_url, {
 			method: 'POST',

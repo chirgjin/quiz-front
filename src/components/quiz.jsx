@@ -10,7 +10,7 @@ class Quiz extends Component {
 		}
 	}
 	componentDidMount(){
-		let base_url = 'http://quizportal.ml/backend/get-questions.api.php'
+		let base_url = 'http://quizportal.cf/backend/get-questions.api.php'
 		fetch(base_url,{
 			method: 'GET',
 			headers: {
@@ -32,7 +32,7 @@ class Quiz extends Component {
 	}
 	radio_submit(ques,e,value){
 		let option = value;
-		let base_url = 'http://quizportal.ml/backend/submit.api.php'
+		let base_url = 'http://quizportal.cf/backend/submit.api.php'
 		let data = {
 			ques_id: ques.id,
 			answer: option
