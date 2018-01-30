@@ -52,6 +52,8 @@ class Quiz extends Component {
 			ques_id: ques.id,
 			answer: option
 		}
+		ques.answer = option;
+
 		fetch(base_url,{
 			method:'POST',
 			headers: {
@@ -75,6 +77,7 @@ class Quiz extends Component {
 
 		if (time < 0) {
 			time_text = "Time Over";
+			window.location.href = "/countdown";
 		}
 		else {
 			time_text = this.state.min + ":" + this.state.sec;
@@ -98,6 +101,10 @@ class Quiz extends Component {
 	submitQues(){
 		let base_url = this.props.base_origin + 'get-questions.api.php';
 		let data = [];
+
+		this.state.questions.map( (question) => (
+			data.push({ques_id : question.id , answer : question.answer })
+		));
 		fetch(base_url,{
 			method:'POST',
 			headers: {
@@ -109,8 +116,10 @@ class Quiz extends Component {
 		.then(res => res.json())
 		.then(json => {
 			if(json.success){
-				window.location.href = '/login';
+				this.logout();
 			}
+			else
+				alert(json.message);
 		})
 		.catch(err => err)
 	}
@@ -151,7 +160,7 @@ class Quiz extends Component {
 					</div>
 					<div className="col-10 ">
 						<div className="questionForm container">
-							<h2 className="start_quiz">START QUIZ <span onClick={this.logout.bind(this)} className='leftAlign'><i class="fa fa-power-off" aria-hidden="true"></i></span></h2>
+							<h2 className="start_quiz">START QUIZ <span onClick={this.logout.bind(this)} className='leftAlign'><i className="fa fa-power-off" aria-hidden="true"></i></span></h2>
 							
 							<div className="row" >
 								{
