@@ -11,11 +11,20 @@ class Quiz extends Component {
 			credential1: localStorage.getItem('credential1'),
 			credential2:localStorage.getItem('credential2'),
 			min:0,
-			sec:0
+			sec:0,
+			time_text : ''
 		}
 	}
 	componentWillMount(){
-		this.timer(this.state.response.ending_time,this.state.response.starting_time )
+		//this.state.response.ending_time = 1517307309.576;
+		let current_time = (new Date()).getTime() / 1000;
+		this.timer(this.state.response.ending_time,current_time)
+		// this.setState({
+		// 	response :	{
+		// 		starting_time: starting_time-1,
+		// 		ending_time: ending_time -1
+		// 	}
+		// })
 	}
 	componentDidMount(){
 		let base_url = 'http://quizportal.cf/backend/get-questions.api.php'
@@ -33,7 +42,7 @@ class Quiz extends Component {
 			this.setState({questions : json.data});
 		})
 		.catch(err => console.log(err))
-		// setInterval(() =>this.timer(this.state.response.ending_time,this.state.response.starting_time ), 1000)
+		setInterval(() =>this.componentWillMount() , 1000)
 		}
 		
 	radio_submit(ques,e,value){
@@ -57,19 +66,29 @@ class Quiz extends Component {
 	}
 
 	timer(end, start){
-		let time =  end - start;
+		let time =  end - start -1;
 		console.log(time);
 		let min = Math.floor(time / 60);
 		let sec = Math.floor(time%60)
 		console.log("min",min,"sec",sec);
-		this.setState({min, sec})
+		let timer_text = '';
+
+		if (time < 0) {
+			timer_text = "Time Over";
+		}
+		else {
+			timer_text = this.state.min + ":" + this.state.sec;
+		}
+		
+		this.setState({min, sec,timer_text,});
 	}
 
 	render() {
+		/*
 		console.log(this.state.credential1);
 		console.log(this.state.credential2);
 		console.log(this.state.response);
-		console.log(this.state.questions);
+		console.log(this.state.questions);*/
 		if(this.state.questions=== null){
 			return (
 				<div>SomeThing Went Wrong</div>
@@ -89,7 +108,7 @@ class Quiz extends Component {
 							<div className='question'>{this.state.credential2}</div>
 						</div>
 						<div className="count_down">
-							<div className='question'>{this.state.min}:{this.state.sec}</div>
+							<div className='question'>{this.state.time_text}</div>
 						</div>
 					</div>
 					<div className="col-10 ">
