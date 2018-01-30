@@ -38,7 +38,7 @@ class Quiz extends Component {
 		}).then(res => res.json())
 		.then((json) => {
 			if(!json.data)
-				json.data = [];
+				json.data = null;
 			this.setState({questions : json.data});
 		})
 		.catch(err => console.log(err))
@@ -82,6 +82,38 @@ class Quiz extends Component {
 		
 		this.setState({min, sec,time_text,});
 	}
+	submitQuessubmitQues
+	logout(){
+		let base_url = this.props.base_origin + 'logout.php'
+		fetch(base_url,{
+			method:'GET',
+			headers: {
+				'Accept': 'application/json',
+			},
+			credentials : 'include',			
+		})
+		window.location.href = "/login"
+	}
+
+	submitQues(){
+		let base_url = this.props.base_origin + 'get-questions.api.php';
+		let data = [];
+		fetch(base_url,{
+			method:'POST',
+			headers: {
+				'Accept': 'application/json',
+			},
+			credentials : 'include',
+			body : JSON.stringify(data)			
+		})		
+		.then(res => res.json())
+		.then(json => {
+			if(json.success){
+				window.location.href = '/login';
+			}
+		})
+		.catch(err => err)
+	}
 
 	render() {
 		/*
@@ -91,7 +123,13 @@ class Quiz extends Component {
 		console.log(this.state.questions);*/
 		if(this.state.questions=== null){
 			return (
-				<div>SomeThing Went Wrong</div>
+				<div className="notFoundWrap">
+					<div className="horizontalCenter">
+						<div className="centered">
+							<span><i className="fa fa-exclamation-triangle" aria-hidden="true"></i>Looks like you didn't loggedin.</span>
+						</div>
+					</div>
+				</div>
 			)
 		}else{
 
@@ -113,7 +151,8 @@ class Quiz extends Component {
 					</div>
 					<div className="col-10 ">
 						<div className="questionForm container">
-							<h2 className="start_quiz">START QUIZ</h2>
+							<h2 className="start_quiz">START QUIZ <span onClick={this.logout.bind(this)} className='leftAlign'><i class="fa fa-power-off" aria-hidden="true"></i></span></h2>
+							
 							<div className="row" >
 								{
 									this.state.questions.map((ques)=>{
@@ -134,6 +173,9 @@ class Quiz extends Component {
 										)
 									})
 								}
+								<div className='col-md-4 center_h'>
+									<button onClick={this.submitQues.bind(this)} className="Submit">SUBMIT ALL</button>
+								</div>
 							</div>
 						</div>						
 					</div>

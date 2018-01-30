@@ -64,6 +64,9 @@ input{
 input:focus{
         outline: 0;
 }
+button:focus{
+        outline: 0;
+}
 .vertical-align{
         width: 100%;
         position: absolute;
