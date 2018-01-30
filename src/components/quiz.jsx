@@ -73,7 +73,7 @@ class Quiz extends Component {
 		let min = Math.floor(time / 60);
 		let sec = Math.floor(time%60)
 		console.log("min",min,"sec",sec);
-		let time_text = '';
+		let time_text = '';min
 
 		if (time < 0) {
 			time_text = "Time Over";
