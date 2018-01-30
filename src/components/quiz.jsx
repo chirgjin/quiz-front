@@ -71,16 +71,16 @@ class Quiz extends Component {
 		let min = Math.floor(time / 60);
 		let sec = Math.floor(time%60)
 		console.log("min",min,"sec",sec);
-		let timer_text = '';
+		let time_text = '';
 
 		if (time < 0) {
-			timer_text = "Time Over";
+			time_text = "Time Over";
 		}
 		else {
-			timer_text = this.state.min + ":" + this.state.sec;
+			time_text = this.state.min + ":" + this.state.sec;
 		}
 		
-		this.setState({min, sec,timer_text,});
+		this.setState({min, sec,time_text,});
 	}
 
 	render() {
