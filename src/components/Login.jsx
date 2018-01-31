@@ -143,7 +143,13 @@ class Login extends Component {
 	preventDefault(event) {
 		event.preventDefault();
 		return false;
-	};
+	}
+	goBack() {
+		this.setState({
+			selectParticipationType : 'selectParticipationType',
+			hidden : 'hidden'
+		})
+	}
   render() {
 	// console.log(this.state.loner_status);
 	// console.log(this.state.team_status);
@@ -157,8 +163,9 @@ class Login extends Component {
 						<button onClick={this.team.bind(this)}  className = 'team_type'>Team Register</button>
 					</div>
 				</div>
+				<style>.logo-login { cursor:pointer; }</style>
 				<div className = {this.state.hidden}>
-				<img className="logo-login" src={require('../img/quizapp.jpg')} alt=""/>
+				<img className="logo-login" src={require('../img/quizapp.jpg')} alt="" onClick={this.goBack.bind(this)} />
 					<form onSubmit={this.Submit.bind(this)} >
 						<div className="vertical-align">
 							{
