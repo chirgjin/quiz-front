@@ -84,7 +84,7 @@ class Quiz extends Component {
 		let min = Math.floor(time / 60);
 		let sec = Math.floor(time%60)
 		console.log("min",min,"sec",sec);
-		let time_text = '';min
+		let time_text = '';
 
 		if (time < 0) {
 			time_text = "Time Over";
@@ -129,6 +129,7 @@ class Quiz extends Component {
 		.then(json => {
 			if(json.success){
 				//this.logout();
+				window.location.href = "/countdown";
 			}
 			else
 				alert(json.message);

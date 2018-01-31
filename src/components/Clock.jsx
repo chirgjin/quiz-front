@@ -4,7 +4,7 @@ class Countdown extends Component {
         constructor(props){
                 super(props);
                 this.state = {
-                        response: null,
+                        response: { end_time : null },
                         min:0,
 			sec:0,
 			time_text : ''
@@ -12,7 +12,14 @@ class Countdown extends Component {
         }
         componentWillMount(){
 		//this.state.response.ending_time = 1517307309.576;
-		let current_time = (new Date()).getTime() / 1000;
+                let current_time = (new Date()).getTime() / 1000;
+                
+                if(this.state.response.end_time === null) {
+                        this.setState({
+                                time_text : "Loading.."
+                        });
+                        return ;
+                }
 		this.timer(this.state.response.end_time,current_time)
 		// this.setState({
 		// 	response :	{
@@ -32,9 +39,7 @@ class Countdown extends Component {
 			credentials: 'include'
 		}).then(res => res.json())
 		.then((json) => {
-			if(!json.data)
-				json.data = null;
-			this.setState({questions : json.data});
+                        this.setState({response : json});
 		})
 		.catch(err => console.log(err))
 		setInterval(() =>this.componentWillMount() , 1000)
@@ -42,18 +47,28 @@ class Countdown extends Component {
                 
                 timer(end, start){
                         let time =  end - start -1;
-                        console.log(time);
+                        
+                        let hours = Math.floor( time / 3600 );
+                        
+                        time -= hours*3600;
+                        
                         let min = Math.floor(time / 60);
-                        let sec = Math.floor(time%60)
-                        console.log("min",min,"sec",sec);
-                        let time_text = '';min
-        
+                        let sec = Math.floor(time%60);
+
+                        
+                        //console.log("min",min,"sec",sec);
+                        let time_text = '';
+                        
+                        
                         if (time < 0) {
                                 time_text = "Time Over";
-                                window.location.href = "/countdown";
                         }
                         else {
-                                time_text = this.state.min + ":" + this.state.sec;
+                                if(hours > 0) {
+                                        time_text = hours + ":" + this.state.min + ":" + this.state.sec;
+                                }
+                                else
+                                        time_text = this.state.min + ":" + this.state.sec;
                         }
                         
                         this.setState({min, sec,time_text,});
@@ -64,7 +79,8 @@ class Countdown extends Component {
                         <center>
                                 <div className="center-area">
                                         <div className="centered">
-                                        <div className='container'>{this.state.time_text}</div>
+                                        <h1>Result Declaration!</h1>
+                                        <div className='container'><h2 className="countdown">{this.state.time_text}</h2></div>
                                         </div>
                                 </div>
                         </center>
