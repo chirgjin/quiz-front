@@ -20,15 +20,17 @@ class App extends Component {
 	}
 	check(){
 		if(window.location.pathname === '/'){
-			window.location.href = '/login'
+			window.location.href = '/index';
+			console.log(window.location);
 		}
-		Login.baseURL = this.state.base_domain;
+		//Login.baseURL = this.state.base_domain;
 	}
 	render() {
+		this.check();
 		return (
 			<BrowserRouter>
 				<div>
-					<Route path='/' component={Terms}/>
+					<Route path='/index' statusUpdate = {this.statusUpdate.bind(this)} render = {(props) => ( <Terms base_origin = {this.state.base_domain} />)} />
 					<Route path='/login' statusUpdate = {this.statusUpdate.bind(this)} render = {(props) => ( <Login base_origin = {this.state.base_domain} />)} />
 					<Route path='/dashboard' render = {(props) => ( <Quiz base_origin = {this.state.base_domain} />)} />
 					<Route path='/countdown' render = {(props) => ( <Countdown base_origin = {this.state.base_domain} />)} />

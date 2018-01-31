@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import 'bootstrap/dist/css/bootstrap.css';
-import './../css/Login.css';
 import './../css/font-awesome.min.css';
 
 class Login extends Component {
@@ -20,6 +19,7 @@ class Login extends Component {
 			currentStatusMessage : '',
 			currentStatus : 1,
 		}
+		import('./../css/Login.css');
 	}
 
 	loner(){

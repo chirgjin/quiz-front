@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import './../css/clock.css';
 
 class Countdown extends Component {
         constructor(props){
@@ -11,6 +10,7 @@ class Countdown extends Component {
                         time_text : '',
                         loadingWidth: 1,
                 }
+                import("./../css/clock.css");
         }
         componentWillMount(){
 		//this.state.response.ending_time = 1517307309.576;
