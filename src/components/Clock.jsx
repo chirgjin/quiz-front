@@ -12,6 +12,7 @@ class Countdown extends Component {
                         time_difference : 0,
                 }
                 import("./../css/clock.css");
+                import("./../css/jumbotron.css");
         }
         componentWillMount(){
 		//this.state.response.ending_time = 1517307309.576;

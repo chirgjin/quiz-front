@@ -7,6 +7,7 @@ import 'bootstrap/dist/css/bootstrap.css';
         }
         render(){
                 import("./../css/clock.css");
+                import("./../css/jumbotron.css");
                 return(
                         <div className="body">
                                     <div className="container">
