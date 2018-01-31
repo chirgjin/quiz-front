@@ -20,6 +20,8 @@ class Quiz extends Component {
 	componentWillMount(){
 		//this.state.response.ending_time = 1517307309.576;
 		let current_time = (new Date()).getTime() / 1000;
+		current_time -= this.state.response.time_difference;
+
 		this.timer(this.state.response.ending_time,current_time)
 		// this.setState({
 		// 	response :	{
@@ -41,6 +43,7 @@ class Quiz extends Component {
 		.then((json) => {
 			if(!json.data)
 				json.data = null;
+			
 			this.setState({questions : json.data});
 		})
 		.catch(err => console.log(err))
@@ -87,6 +90,8 @@ class Quiz extends Component {
 		let sec = Math.floor(time%60)
 		console.log("min",min,"sec",sec);
 		let time_text = '';
+
+		this.setState({min, sec,time_text,});
 
 		if (time < 0) {
 			time_text = "Time Over";

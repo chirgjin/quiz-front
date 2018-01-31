@@ -9,6 +9,7 @@ class Countdown extends Component {
 			sec:0,
                         time_text : '',
                         loadingWidth: 1,
+                        time_difference : 0,
                 }
                 import("./../css/clock.css");
         }
@@ -23,6 +24,10 @@ class Countdown extends Component {
                         return ;
                 }
                 console.log(this.state.response.end_time);
+
+                if(this.state.time_difference)
+                        current_time -= this.state.time_difference;
+                
 		this.timer(this.state.response.end_time,current_time)
 		// this.setState({
 		// 	response :	{
@@ -43,6 +48,9 @@ class Countdown extends Component {
 		}).then(res => res.json())
 		.then((json) => {
                         this.setState({response : json});
+                        let current_time = Math.floor( (new Date()).getTime() / 1000 );
+
+                        this.state.time_difference = current_time - json.current_time;
 		})
 		.catch(err => console.log(err))
 		setInterval(() =>this.componentWillMount() , 1000)

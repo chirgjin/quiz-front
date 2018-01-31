@@ -110,6 +110,11 @@ class Login extends Component {
 				currentStatus: 1
 			});
 				console.log(this.state.response.success)
+				if(json.success) {
+					let current_time = Math.floor( (new Date()).getTime() / 1000 );
+					json.time_difference = current_time - json.current_time;
+				}
+				
 				localStorage.setItem('response', JSON.stringify(json));
 				if(this.state.response.success === 1){
 					
