@@ -10,7 +10,7 @@ class App extends Component {
 		super(props);
 		this.state = {
 			status : null,
-			base_domain : `https://quizportal.cf/backend/`
+			base_domain : `//quizportal.cf/backend/`
 		}
 	}
 	statusUpdate(obj){

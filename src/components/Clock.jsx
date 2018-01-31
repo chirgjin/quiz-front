@@ -59,6 +59,10 @@ class Countdown extends Component {
                 timer(end, start){
                         let time =  end - start -1;
                         
+                        if(time < 0) {
+                                window.location.href = "/result";
+                                return ;
+                        }
                         let hours = Math.floor( time / 3600 );
                         
                         time -= hours*3600;
