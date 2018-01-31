@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import './../css/clock.css';
+
 class Countdown extends Component {
         constructor(props){
                 super(props);
@@ -7,7 +8,8 @@ class Countdown extends Component {
                         response: { end_time : null },
                         min:0,
 			sec:0,
-			time_text : ''
+                        time_text : '',
+                        loadingWidth: 1,
                 }
         }
         componentWillMount(){
@@ -20,6 +22,7 @@ class Countdown extends Component {
                         });
                         return ;
                 }
+                console.log(this.state.response.end_time);
 		this.timer(this.state.response.end_time,current_time)
 		// this.setState({
 		// 	response :	{
@@ -60,15 +63,17 @@ class Countdown extends Component {
                         let time_text = '';
                         
                         
+                        //this.setState({min, sec,time_text,});
+
                         if (time < 0) {
                                 time_text = "Time Over";
                         }
                         else {
                                 if(hours > 0) {
-                                        time_text = hours + ":" + this.state.min + ":" + this.state.sec;
+                                        time_text = hours + ":" + min + ":" + sec;
                                 }
                                 else
-                                        time_text = this.state.min + ":" + this.state.sec;
+                                        time_text = min + ":" + sec;
                         }
                         
                         this.setState({min, sec,time_text,});
@@ -76,15 +81,19 @@ class Countdown extends Component {
 	
         render(){
                 return(
-                        <center>
-                                <div className="center-area">
+                        <div>
+                                <div className="container">
+                                        <div className="jumbotron">
                                         <div className="centered">
-                                        <h1>Result Declaration!</h1>
-                                        <div className='container'><h2 className="countdown">{this.state.time_text}</h2></div>
+                                                <h1 align="center" >Result Declaration!</h1>
+                                                <div className='container'>
+                                                        <h2 className="countdown">{this.state.time_text}</h2></div>
+                                                </div>
+                                        <br/>
                                         </div>
                                 </div>
-                        </center>
-                )
+                        </div>
+                );
         }
 }
 

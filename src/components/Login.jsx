@@ -71,7 +71,7 @@ class Login extends Component {
 			return 0;
 		
 		/*this.setState({
-			currentStatusMessage : "<i class='fa fa-spin fa-spinner' ></i> Loading."
+			currentStatusMessage : "<i className='fa fa-spin fa-spinner' ></i> Loading."
 		});*/
 
 		this.setState({

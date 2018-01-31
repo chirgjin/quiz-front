@@ -145,10 +145,10 @@ class Quiz extends Component {
 		console.log(this.state.questions);*/
 		if(this.state.questions=== null){
 			return (
-				<div className="notFoundWrap">
-					<div className="horizontalCenter">
-						<div className="centered">
-							<span><i className="fa fa-exclamation-triangle" aria-hidden="true"></i>Looks like you didn't loggedin.</span>
+				<div classNameName="notFoundWrap">
+					<div classNameName="horizontalCenter">
+						<div classNameName="centered">
+							<span><i classNameName="fa fa-exclamation-triangle" aria-hidden="true"></i>Looks like you didn't loggedin.</span>
 						</div>
 					</div>
 				</div>
@@ -157,37 +157,37 @@ class Quiz extends Component {
 
 		return (
 			<div>
-				<div className="components-wrap row">
-					<div className="col-2 question_selector">
-						<div className="logo-wrapper">
-							<img className="logo" src={require('../img/quizapp.png')} alt=""/>
+				<div classNameName="components-wrap row">
+					<div classNameName="col-2 question_selector">
+						<div classNameName="logo-wrapper">
+							<img classNameName="logo" src={require('../img/quizapp.png')} alt=""/>
 						</div>
-						<div className="question_slider">
+						<div classNameName="question_slider">
 							<strong>Welcome!</strong>
-							<div className='question'>{this.state.credential1}</div>
-							<div className='question'>{this.state.credential2}</div>
+							<div classNameName='question'>{this.state.credential1}</div>
+							<div classNameName='question'>{this.state.credential2}</div>
 						</div>
-						<div className="count_down">
-							<div className='question'>{this.state.time_text}</div>
+						<div classNameName="count_down">
+							<div classNameName='question'>{this.state.time_text}</div>
 						</div>
 					</div>
-					<div className="col-10 ">
-						<div className="questionForm container">
-							<h2 className="start_quiz">START QUIZ <span onClick={this.logout.bind(this)} className='leftAlign'><i className="fa fa-power-off" aria-hidden="true"></i></span></h2>
+					<div classNameName="col-10 ">
+						<div classNameName="questionForm container">
+							<h2 classNameName="start_quiz">START QUIZ <span onClick={this.logout.bind(this)} classNameName='leftAlign'><i classNameName="fa fa-power-off" aria-hidden="true"></i></span></h2>
 							
-							<div className="row" >
+							<div classNameName="row" >
 								{
 									this.state.questions.map((ques)=>{
 										return(
-											<div className="col-md-12 question-box" key={ques.id}>
-												<div className="cards" >
+											<div classNameName="col-md-12 question-box" key={ques.id}>
+												<div classNameName="cards" >
 													<form>
 														
-														<strong className="letter-space">{ques.question}</strong><br/>
-															<div className="center_text" ><label><span><input type="radio" onChange={(e)=>this.radio_submit(ques,e,1)} className='radio' name="optradio"/></span><span className="letter-space" >{ques.options[0]}</span></label>
-															<label><span><input type="radio" onChange={(e)=>this.radio_submit(ques,e,2)} className='radio' name="optradio"/></span><span className="letter-space" >{ques.options[1]}</span></label></div>
-															<div className="center_text" ><label><span><input type="radio" onChange={(e)=>this.radio_submit(ques,e,3)} className='radio' name="optradio"/></span><span className="letter-space" >{ques.options[2]}</span></label>
-															<label><span><input type="radio" onChange={(e)=>this.radio_submit(ques,e,4)} className='radio' name="optradio"/></span><span className="letter-space" >{ques.options[3]}</span></label></div>											
+														<strong classNameName="letter-space">{ques.question}</strong><br/>
+															<div classNameName="center_text" ><label><span><input type="radio" onChange={(e)=>this.radio_submit(ques,e,1)} classNameName='radio' name="optradio"/></span><span classNameName="letter-space" >{ques.options[0]}</span></label>
+															<label><span><input type="radio" onChange={(e)=>this.radio_submit(ques,e,2)} classNameName='radio' name="optradio"/></span><span classNameName="letter-space" >{ques.options[1]}</span></label></div>
+															<div classNameName="center_text" ><label><span><input type="radio" onChange={(e)=>this.radio_submit(ques,e,3)} classNameName='radio' name="optradio"/></span><span classNameName="letter-space" >{ques.options[2]}</span></label>
+															<label><span><input type="radio" onChange={(e)=>this.radio_submit(ques,e,4)} classNameName='radio' name="optradio"/></span><span classNameName="letter-space" >{ques.options[3]}</span></label></div>											
 														
 													</form>
 												</div>
@@ -195,8 +195,8 @@ class Quiz extends Component {
 										)
 									})
 								}
-								<div className='col-md-4 center_h'>
-									<button onClick={this.submitQues.bind(this)} className="Submit">SUBMIT ALL</button>
+								<div classNameName='col-md-4 center_h'>
+									<button onClick={this.submitQues.bind(this)} classNameName="Submit">SUBMIT ALL</button>
 									<br/>
 								</div>
 							</div>

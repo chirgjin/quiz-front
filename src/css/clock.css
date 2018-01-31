@@ -5,3 +5,9 @@ h1{
 .countdown{
         font-size: 10em;
 }
+
+.body{
+        background: #302947;
+        width: 100%;
+        height: 100%;
+}
