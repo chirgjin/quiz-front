@@ -163,7 +163,6 @@ class Login extends Component {
 						<button onClick={this.team.bind(this)}  className = 'team_type'>Team Register</button>
 					</div>
 				</div>
-				<style>.logo-login { cursor:pointer; }</style>
 				<div className = {this.state.hidden}>
 				<img className="logo-login" src={require('../img/quizapp.jpg')} alt="" onClick={this.goBack.bind(this)} />
 					<form onSubmit={this.Submit.bind(this)} >
