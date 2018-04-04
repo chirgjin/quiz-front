@@ -1,6 +1,9 @@
 {
   "name": "quizapp",
   "version": "0.1.0",
+  "engines": {
+    "node": "9.6.1"
+  }
   "private": true,
   "dependencies": {
     "bootstrap": "^4.0.0",
