@@ -95,7 +95,7 @@ class Countdown extends Component {
         render(){
                 return(
                         <div>
-                                <div className="container">
+                                <div className="container" style="align-items:  center;justify-content:  center;display:  flex;">
                                         <div className="jumbotron">
                                         <div className="centered">
                                                 <h1 align="center" >Result Declaration!</h1>
