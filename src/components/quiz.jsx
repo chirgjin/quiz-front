@@ -84,26 +84,26 @@ class Quiz extends Component {
 	}
 
 	timer(end, start) {
-		let time = end - start - 1;
-		console.log(time);
-		let min = Math.floor(time / 60);
-		let sec = Math.floor(time % 60)
-		console.log("min", min, "sec", sec);
-		let time_text = '';
+		// let time = end - start - 1;
+		// console.log(time);
+		// let min = Math.floor(time / 60);
+		// let sec = Math.floor(time % 60)
+		// console.log("min", min, "sec", sec);
+		// let time_text = '';
 
-		this.setState({ min, sec, time_text, });
+		// this.setState({ min, sec, time_text, });
 
-		if (time < 0) {
-			time_text = "Time Over";
-			window.location.href = "/countdown";
-		}
-		else {
-			time_text = this.state.min + ":" + this.state.sec;
-		}
+		// if (time < 0) {
+		// 	time_text = "Time Over";
+		// 	window.location.href = "/countdown";
+		// }
+		// else {
+		// 	time_text = this.state.min + ":" + this.state.sec;
+		// }
 
-		this.setState({ min, sec, time_text, });
+		// this.setState({ min, sec, time_text, });
 	}
-	submitQuessubmitQues
+	// submitQuessubmitQues
 	logout() {
 		let base_url = this.props.base_origin + 'logout.php'
 		fetch(base_url, {

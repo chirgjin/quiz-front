@@ -11,7 +11,7 @@ class App extends Component {
 		super(props);
 		this.state = {
 			status: null,
-			base_domain: `//quizportal.cf/backend/`
+			base_domain: `https://anidl.ml/quiz-portal/backend/`
 		}
 	}
 	statusUpdate(obj) {

@@ -95,12 +95,14 @@ class Countdown extends Component {
         render() {
                 return (
                         <div>
-                                <div className="container" style="align-items:  center;justify-content:  center;display:  flex;">
+                                {/* <div className="container" style="align-items:  center;justify-content:  center;display:  flex;"> */}
+                                <div className="container">
                                         <div className="jumbotron">
                                                 <div className="centered">
                                                         <h1 align="center" >Result Declaration!</h1>
                                                         <div className='container'>
-                                                                <h2 className="countdown">{this.state.time_text}</h2></div>
+                                                                <h2 className="countdown">{this.state.time_text}</h2>
+                                                        </div>
                                                 </div>
                                                 <br />
                                         </div>
